@@ -137,6 +137,117 @@ chmod +x S60MAC.sh
 
 ----------------------------------------------
 
+## Servidor TFTP
+
+Antes de começar a construção do servidor, é bom entender como ele funciona.
+### Conceito e Diretório
+
+Um servidor TFTP é um serviço disponível em um host que permite ao server buscar arquivos, baseado no protocolo de comunicação TFTP. Para esta aplicação, o servidor será utilizado como fonte dos arquivos principais para configurar a FPGA da DE10-Standard, mas poderia também ser usado para buscar as imagens dos Sistemas Operacionais e BootScripts, além de parear muito bem com o serviço de NFS (Network File System) para que o File System da DE10 pudesse ser remoto. Com tais funcionalidades, poderíamos chegar em uma construção de diretório assim:
+
+```bash
+/srv
+├── nfs
+│   ├── angstrom-v2014.12
+│   │   └── root file system extracted from build tools .tar.gx archive
+│   ├── ubuntu-core
+│   │   └── root file system extracted from build tools .tar.gx archive
+└── tftp
+    ├── bootscripts
+    │   ├── sockit-angstrom.scr
+    │   ├── sockit-angstrom.script
+    │   ├── sockit-ubuntu.scr
+    │   └── sockit-ubuntu.script
+    ├── kernel
+    │   ├── kernel-3.10-ltsi
+    │   │   └── zImage
+    │   ├── kernel-4.4
+    │   │   └── zImage
+    ├── my-custom-board
+    │   ├── my-custom.dtb
+    │   └── my-custom.rbf    
+    └── sockit
+        ├── soc_system.dtb
+        └── soc_system.rbf
+```
+
+Como neste tutorial só será usado o espaço destinado aos arquivos do quartus, abaixo está uma tabela onde estes se encontram no output de uma compilação do projeto criado pelo aplicativo:
+
+| Item                               | Source             | File Location                            | Copy to server directory |
+|------------------------------------|--------------------|------------------------------------------|--------------------------|
+| Compressed FPGA configuration file | Quartus GHRD Build | /sockit_ghrd/output_files/soc_system.rbf | soc_system.rbf           |
+| Device Tree Blob file              | Quartus GHRD Build | /sockit_ghrd/soc_system.dtb              | soc_system.dtb           |
+
+### Setup do Servidor TFTP
+
+Para começar com o setup, vamos instalar o próprio serviço de TFTP:
+
+```cmd
+sudo apt-get install tftpd-hpa
+```
+
+!!! note
+    O servidor deve começar automáticamente após ser instalado, verifique por meio do seguinte comando:
+
+    ```cmd
+    sudo service tftpd-hpa status
+    ```
+
+    Caso não tenha iniciado, inicie-o com o comando:
+
+    ```cmd
+    sudo service tftpd-hpa start
+    ```
+
+Em seguida crie os repositórios necessários para armazenar os arquivos `.dtb` e `.rbf` como mostrado na árvore de diretórios acima.
+
+Depois de ter organizado todo o diretório, precisa indicar para o servidor que são estas pastas que serão usadas. Para isso deve editar a variável `TFTP_DIRECTORY`, localizada em **/etc/default/tftpd-hpa**. Ela deve possuir um diretório padrão, mas deve configurá-lo para aquele criado acima.
+
+```bash
+TFTP_DIRECTORY="/srv/tftp/"
+```
+
+Verifique o status novamente. Se estiver rodadndo (*start/running*), pode proceguir para a próxima etapa, caso não, provavelmente o diretório configurado não foi encontrado pelo servidor.
+
+Por último, copie os arquivos `.dtb` e `.rbf` para o repositório e reinicie o servidor:
+
+```cmd
+sudo service tftpd-hpa restart
+```
+
+## Carrgando o U-Boot
+
+Depois de configurar toda a infraestrutura da DE10-Standard com os laboratórios feitos em aula, vamos entender uma ferramenta essencial para o funcionamento do Linux Embarcado: o `U-Boot`.
+
+Quando o kernel Linux é instalado, é criada uma partição no SDCard com esse serviço de *"pre-boot"*. Nele, são definidas as configurações iniciais da placa para receber e organizar tanto a imagem, os arquivos da FPGA e o File System e por meio de Scripts de boot, iniciar o S.O. adequadamente.
+
+Esse *"pre-boot"* é extremamente poderoso para a nossa aplicação, pois podemos configurar toda a estrutura do S.O. sem necessidade de tirar o SDCard ou acessá-la fisicamente.
+
+Antes de configurá-lo, é necessário entender seu funcionamento.
+
+### Funcionamento do U-Boot
+
+O U-Boot é muito simples. Ele funciona por meio de variáveis de ambiente, que podem ser funções ou caminhos, além de valores em si, que, quando construidos de um certo modo, conseguem construir a estrutura de boot necessária para ler os arquivos no servidor TFTP já configurado. Inclusive, já existem funções definidas para realizar o boot por meio de um servidor, só precisamos garantir que as variáveis estão corretamente definidas.
+
+**Vamos começar devagar...**
+
+Primeiro acesse o kernel com o u-boot. Como não existe nenhum Sistema Operacional, não temos acesso ao serviço de **ssh**, portanto precisamos acessar por `screen`, como foi feito anteriormente. 
+
+Mas só isso não conseguimos entrar no painel do U-boot, precisamos reiniciar a placa, e no tempo antes de começar a inicialização automática apertar qualquer tecla. Isso deve parar o processo, e então você irá se deparar com esse terminal:
+
+```cmd
+SOCFPGA_CYCLONE5 #
+```
+
+Nele é possível visualizar os comandos já definidos com a função de `help` ou visualizar quais as variáveis de ambiente já predefinidas, usando `printenv`.
+
+Outros comando muito importantes para configurar o ambiente são: `setenv` e `saveenv`, que irão, respectivamente, receber dois argumentos dizendo qual o nome da variável e seu valor e defini-la como variável de ambiente temporária e receber nenhum argumento e salvar todas as variáveis temporárias como permanetes naquela máquina.
+
+Com essas informações em mãos, vamos partir para a etapa de experimentação manual de boot.
+
+### Boot Manual em TFTP Server
+
+
+
 ## Motivação
 
 A nossa motivação para realizar este projeto foi como ele é altamente aplicável a replicação de serviços construídos para SoC-FPGA e no nosso caso, auxiliar a matéria de Embarcados com a possibilidade de automatização dos testes de funcionamento em hardware dos laboratórios.
