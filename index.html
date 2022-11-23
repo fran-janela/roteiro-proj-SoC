@@ -300,11 +300,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#carrgando-o-u-boot" class="md-nav__link">
-    Carrgando o U-Boot
+  <a href="#carregando-o-u-boot" class="md-nav__link">
+    Carregando o U-Boot
   </a>
   
-    <nav class="md-nav" aria-label="Carrgando o U-Boot">
+    <nav class="md-nav" aria-label="Carregando o U-Boot">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -462,11 +462,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#carrgando-o-u-boot" class="md-nav__link">
-    Carrgando o U-Boot
+  <a href="#carregando-o-u-boot" class="md-nav__link">
+    Carregando o U-Boot
   </a>
   
-    <nav class="md-nav" aria-label="Carrgando o U-Boot">
+    <nav class="md-nav" aria-label="Carregando o U-Boot">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -643,22 +643,22 @@ Para isso, configure no roteador:</p>
 <p>Todo o arquivo dentro desta pasta que começa com <strong>S</strong> maiúsculo é executado durante o <em>boot</em> do S.O.</p>
 </div>
 <ul>
-<li>Acessando o arquivo com <code>vi</code>, coloque o seguinte código:
-<div class="highlight"><pre><span></span><code>#!/bin/bash
-
-case &quot;$1&quot; in
-start)
-    printf &quot;Setting ip: &quot;
-    /sbin/ifconfig eth0 192.168.0.40 netmask 255.255.240.0 up
-    [ $? = 0 ] &amp;&amp; echo &quot;OK&quot; || echo &quot;FAIL&quot;
-    route add default gw 192.168.0.1
-    ;;
-*)  
-    exit 1
-    ;;
-esac
-</code></pre></div></li>
+<li>Acessando o arquivo com <code>vi</code>, coloque o seguinte código:</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="k">in</span>
+start<span class="o">)</span>
+    <span class="nb">printf</span> <span class="s2">&quot;Setting ip: &quot;</span>
+    /sbin/ifconfig eth0 <span class="m">192</span>.168.0.40 netmask <span class="m">255</span>.255.240.0 up
+    <span class="o">[</span> <span class="nv">$?</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;OK&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;FAIL&quot;</span>
+    route add default gw <span class="m">192</span>.168.0.1
+    <span class="p">;;</span>
+*<span class="o">)</span>  
+    <span class="nb">exit</span> <span class="m">1</span>
+    <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div>
 <p>O código acima irá configurar a rede da placa para que esta tenha um ip fixo de acordo com as configurações de rede feitas.</p>
 <ul>
 <li>Transforme o arquivo acima em um executável
@@ -746,7 +746,7 @@ esac
 <p>Por último, copie os arquivos <code>.dtb</code> e <code>.rbf</code> para o repositório e reinicie o servidor:</p>
 <div class="highlight"><pre><span></span><code>sudo service tftpd-hpa restart
 </code></pre></div>
-<h2 id="carrgando-o-u-boot">Carrgando o U-Boot<a class="headerlink" href="#carrgando-o-u-boot" title="Permanent link">&para;</a></h2>
+<h2 id="carregando-o-u-boot">Carregando o U-Boot<a class="headerlink" href="#carregando-o-u-boot" title="Permanent link">&para;</a></h2>
 <p>Depois de configurar toda a infraestrutura da DE10-Standard com os laboratórios feitos em aula, vamos entender uma ferramenta essencial para o funcionamento do Linux Embarcado: o <code>U-Boot</code>.</p>
 <p>Quando o kernel Linux é instalado, é criada uma partição no SDCard com esse serviço de <em>"pre-boot"</em>. Nele, são definidas as configurações iniciais da placa para receber e organizar tanto a imagem, os arquivos da FPGA e o File System e por meio de Scripts de boot, iniciar o S.O. adequadamente.</p>
 <p>Esse <em>"pre-boot"</em> é extremamente poderoso para a nossa aplicação, pois podemos configurar toda a estrutura do S.O. sem necessidade de tirar o SDCard ou acessá-la fisicamente.</p>
