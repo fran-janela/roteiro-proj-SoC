@@ -1,4 +1,4 @@
-# Webserver com Servidor TFTP para automatização de deploy de aplicações na DE10-Standard
+# Webserver com Servidor TFTP para automatização de deploy de testes de Embarcados na DE10-Standard
 
 - **Alunos:** Francisco Pinheiro Janela / Wilgner  / Marco
 - **Curso:** Engenharia da Computação / Mecatrônica / Mecatrônica
@@ -106,7 +106,8 @@ Com esse acesso, agora podemos configurar o ip fixo do S.O. da FPGA:
     Todo o arquivo dentro desta pasta que começa com **S** maiúsculo é executado durante o *boot* do S.O.
 
 - Acessando o arquivo com `vi`, coloque o seguinte código:
-```cmd
+
+``` bash
 #!/bin/bash
 
 case "$1" in
@@ -214,7 +215,7 @@ Por último, copie os arquivos `.dtb` e `.rbf` para o repositório e reinicie o 
 sudo service tftpd-hpa restart
 ```
 
-## Carrgando o U-Boot
+## Carregando o U-Boot
 
 Depois de configurar toda a infraestrutura da DE10-Standard com os laboratórios feitos em aula, vamos entender uma ferramenta essencial para o funcionamento do Linux Embarcado: o `U-Boot`.
 
@@ -244,9 +245,95 @@ Outros comando muito importantes para configurar o ambiente são: `setenv` e `sa
 
 Com essas informações em mãos, vamos partir para a etapa de experimentação manual de boot.
 
-### Boot Manual em TFTP Server
+#### Experimentação Manual
+
+- Em primeiro lugar, vamos configurar o servidor TFTP para que ele possa ser acessado pela placa. Para isso, precisamos definir o IP da placa e do servidor. Para isso, vamos usar o comando `setenv`:
+
+```cmd
+setenv ipaddr 192.168.0.4
+```
+
+- Agora configure o MAC-ADDRESS da placa na variável `ethaddr`;
+
+??? Dica
+    Para descobrir o MAC-ADDRESS da placa, basta acessar o terminal do Linux e executar o comando `ifconfig`. O MAC-ADDRESS deve ser o mesmo que aparece no terminal do Linux. 
+    
+    Para isso basta reiniciar a placa por completo, sem acessar o *U-Boot*. Volte e execute o passo acima, ou, antes de reiniciar, execute o comando `saveenv`.
+
+- Teste a comunicação com a NUC, usando o comando `ping`:
+
+```cmd
+ping 192.168.0.3
+```
+
+- Se a comunicação for bem sucedida, salve a variável `serverip` com o IP da NUC.
+
+- Agora salve o ambiente criado com o comando `saveenv`.
+
+- Reinicie a placa e acesse novamente o *U-Boot*. Com o comando `printenv` é possível visualizar **todas as variáveis de ambiente criadas**.
+
+### Boot em TFTP Server
+
+Depois de entender o funcionamento do *U-Boot*, vamos crirar um **BootScript** para que a placa consiga iniciar o sistema carregando os arquivos do servidor TFTP sem a necessidade de nenhuma configuração manual.
+
+- Crie um arquivo `boot_script.script`
+
+- Adicione o seguinte conteúdo:
+
+```cmd
+echo -- Setting Network Variables --
+setenv ipaddr [SEU_IP]
+setenv ethaddr [SEU_MAC_ADDRESS]
+
+echo -- Setting Server Ip --
+setenv serverip [SEU_IP_DA_NUC]
+
+echo -- Setting Server Location File --
+setenv tftp-sockit-dir sockit
+
+echo -- Setting Server SocKit File Names --
+setenv fpga-image soc_system.rbf
+setenv dtb-image soc_system.dtb
+
+echo -- Setting file location in RAM --
+setenv fpgadata 0x2000000
+setenv fpgadatasize 0x700000
+setenv dtbaddr 0x00000100
+
+echo -- Setting FPGA TFTP run scripts --
+setenv get-fpgadata 'tftp ${fpgadata} ${tftp-sockit-dir}/${fpga-image}'
+setenv load-fpga 'fpga load 0 ${fpgadata} ${fpgadatasize}'
+setenv get-dtb 'tftp ${dtbaddr} ${tftp-sockit-dir}/${dtb-image}'
 
 
+echo -- Run tftp comands --
+run get-fpgadata;
+run load-fpga;
+run get-dtb;
+run bridge_enable_handoff;
+run mmcload;
+run mmcboot;
+```
+
+Depois do arquivo estar completo com as variáveis corretamente configuradas, vamos tornar o arquivo em um script que será executado no *U-Boot*.
+
+- Inicie o *Intel Embedded Command Shell* com o seguinte comando:
+
+```cmd
+~/intelFPGA_lite/18.0/embedded/embedded_command_shell.sh
+```
+
+- Execute o próximo comando para compilar o boot_script para o arquivo `u-boot.scr`:
+
+```cmd
+mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "TFTP Boot Script" -d boot_script.script u-boot.scr
+```
+
+- Copie o arquivo `u-boot.scr` para a mesma partição do SDCard da FPGA que se localiza a imagem do linux (*zImage*) - vai ser necessário desligar a placa e remover o cartão de memória.
+
+- Insira o SDCard e inicie a placa.
+
+**Pronto!** Seu sistema deve estar funcionando. Agora, sempre que substituir os arquivos `.rbf`e `dtb` na NUC e reiniciar a placa, a FPGA será automáticamente reconfigurada com a nova aplicação no *boot*.
 
 ## Motivação
 

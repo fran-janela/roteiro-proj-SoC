@@ -8,8 +8,8 @@
       
       
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.1">
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.9">
     
     
       
@@ -17,30 +17,35 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.38780c08.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.20d9efc8.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.3f72e892.min.css">
+        <link rel="stylesheet" href="assets/stylesheets/palette.08040f6c.min.css">
         
           
           
           <meta name="theme-color" content="#ffffff">
         
       
+      
+
     
     
     
       
         
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
-    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+
+    
     
     
   </head>
@@ -51,16 +56,17 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="pink">
-      
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="pink">
   
+    
+    
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
         
-        <a href="#coloque-aqui-o-nome-do-tutorial-de-voces" class="md-skip">
+        <a href="#webserver-com-servidor-tftp-para-automatizacao-de-deploy-de-testes-de-embarcados-na-de10-standard" class="md-skip">
           Skip to content
         </a>
       
@@ -69,48 +75,58 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="." title="Eletiva: Embarcados Avançados (SoC e Linux Embarcado)" class="md-header-nav__button md-logo" aria-label="Eletiva: Embarcados Avançados (SoC e Linux Embarcado)">
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Eletiva: Embarcados Avançados (SoC e Linux Embarcado)" class="md-header__button md-logo" aria-label="Eletiva: Embarcados Avançados (SoC e Linux Embarcado)" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
     </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             Eletiva: Embarcados Avançados (SoC e Linux Embarcado)
           </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               Home
             
           </span>
         </div>
-      
+      </div>
     </div>
     
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
       </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
+      <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -127,26 +143,33 @@
     
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
         
+          
+        
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
           
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Eletiva: Embarcados Avançados (SoC e Linux Embarcado)" class="md-nav__button md-logo" aria-label="Eletiva: Embarcados Avançados (SoC e Linux Embarcado)">
+    <a href="." title="Eletiva: Embarcados Avançados (SoC e Linux Embarcado)" class="md-nav__button md-logo" aria-label="Eletiva: Embarcados Avançados (SoC e Linux Embarcado)" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
     Eletiva: Embarcados Avançados (SoC e Linux Embarcado)
@@ -159,26 +182,31 @@
       
 
   
-
-
-  <li class="md-nav__item md-nav__item--active">
+  
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
       
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
         Home
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
-      Home
-    </a>
-    
+      </a>
       
+        
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -188,12 +216,126 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#comecando" class="md-nav__link">
     Começando
   </a>
+  
+    <nav class="md-nav" aria-label="Começando">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#montando-a-infraestrutura" class="md-nav__link">
+    Montando a Infraestrutura
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-infraestrtura" class="md-nav__link">
+    Configurando a Infraestrtura
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurando a Infraestrtura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-rede" class="md-nav__link">
+    Configurando a Rede
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-maquina" class="md-nav__link">
+    Configurando a Máquina
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-placa-fpga" class="md-nav__link">
+    Configurando a Placa FPGA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servidor-tftp" class="md-nav__link">
+    Servidor TFTP
+  </a>
+  
+    <nav class="md-nav" aria-label="Servidor TFTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceito-e-diretorio" class="md-nav__link">
+    Conceito e Diretório
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-do-servidor-tftp" class="md-nav__link">
+    Setup do Servidor TFTP
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#carregando-o-u-boot" class="md-nav__link">
+    Carregando o U-Boot
+  </a>
+  
+    <nav class="md-nav" aria-label="Carregando o U-Boot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funcionamento-do-u-boot" class="md-nav__link">
+    Funcionamento do U-Boot
+  </a>
+  
+    <nav class="md-nav" aria-label="Funcionamento do U-Boot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experimentacao-manual" class="md-nav__link">
+    Experimentação Manual
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-em-tftp-server" class="md-nav__link">
+    Boot em TFTP Server
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -204,18 +346,12 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#recursos-markdown" class="md-nav__link">
-    Recursos Markdown
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
-    
-  </li>
+      
+    </li>
+  
 
     
   </ul>
@@ -225,11 +361,14 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
+
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -239,25 +378,132 @@
       <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
-    <ul class="md-nav__list" data-md-scrollfix>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#comecando" class="md-nav__link">
     Começando
   </a>
   
+    <nav class="md-nav" aria-label="Começando">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#montando-a-infraestrutura" class="md-nav__link">
+    Montando a Infraestrutura
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-infraestrtura" class="md-nav__link">
+    Configurando a Infraestrtura
+  </a>
+  
+    <nav class="md-nav" aria-label="Configurando a Infraestrtura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-rede" class="md-nav__link">
+    Configurando a Rede
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-maquina" class="md-nav__link">
+    Configurando a Máquina
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurando-a-placa-fpga" class="md-nav__link">
+    Configurando a Placa FPGA
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#servidor-tftp" class="md-nav__link">
+    Servidor TFTP
+  </a>
+  
+    <nav class="md-nav" aria-label="Servidor TFTP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#conceito-e-diretorio" class="md-nav__link">
+    Conceito e Diretório
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setup-do-servidor-tftp" class="md-nav__link">
+    Setup do Servidor TFTP
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#carregando-o-u-boot" class="md-nav__link">
+    Carregando o U-Boot
+  </a>
+  
+    <nav class="md-nav" aria-label="Carregando o U-Boot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#funcionamento-do-u-boot" class="md-nav__link">
+    Funcionamento do U-Boot
+  </a>
+  
+    <nav class="md-nav" aria-label="Funcionamento do U-Boot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#experimentacao-manual" class="md-nav__link">
+    Experimentação Manual
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-em-tftp-server" class="md-nav__link">
+    Boot em TFTP Server
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#motivacao" class="md-nav__link">
     Motivação
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#recursos-markdown" class="md-nav__link">
-    Recursos Markdown
   </a>
   
 </li>
@@ -270,166 +516,392 @@
               </div>
             
           
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
                 
-                
-                <h1 id="coloque-aqui-o-nome-do-tutorial-de-voces">Coloque aqui o nome do tutorial de vocês<a class="headerlink" href="#coloque-aqui-o-nome-do-tutorial-de-voces" title="Permanent link">&para;</a></h1>
+                  
+
+
+<h1 id="webserver-com-servidor-tftp-para-automatizacao-de-deploy-de-testes-de-embarcados-na-de10-standard">Webserver com Servidor TFTP para automatização de deploy de testes de Embarcados na DE10-Standard<a class="headerlink" href="#webserver-com-servidor-tftp-para-automatizacao-de-deploy-de-testes-de-embarcados-na-de10-standard" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Alunes:</strong> .../ ... /...</li>
-<li><strong>Curso:</strong> Engenharia da Computação</li>
-<li><strong>Semestre:</strong> 9</li>
-<li><strong>Contato:</strong> <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#114;&#115;&#105;&#102;&#101;&#114;&#114;&#97;&#111;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#99;&#111;&#114;&#115;&#105;&#102;&#101;&#114;&#114;&#97;&#111;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
-<li><strong>Ano:</strong> 2020</li>
+<li><strong>Alunos:</strong> Francisco Pinheiro Janela / Wilgner  / Marco</li>
+<li><strong>Curso:</strong> Engenharia da Computação / Mecatrônica / Mecatrônica</li>
+<li><strong>Semestre:</strong> 6</li>
+<li><strong>Contato:</strong> <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#102;&#114;&#97;&#110;&#99;&#105;&#115;&#99;&#111;&#46;&#112;&#105;&#110;&#104;&#101;&#105;&#114;&#111;&#46;&#106;&#97;&#110;&#101;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#102;&#114;&#97;&#110;&#99;&#105;&#115;&#99;&#111;&#46;&#112;&#105;&#110;&#104;&#101;&#105;&#114;&#111;&#46;&#106;&#97;&#110;&#101;&#108;&#97;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a> / <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#108;&#97;&#99;&#101;&#104;&#111;&#108;&#100;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#112;&#108;&#97;&#99;&#101;&#104;&#111;&#108;&#100;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a> / <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#108;&#97;&#99;&#101;&#104;&#111;&#108;&#100;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#112;&#108;&#97;&#99;&#101;&#104;&#111;&#108;&#100;&#101;&#114;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a></li>
+<li><strong>Ano:</strong> 2022.2</li>
 </ul>
 <h2 id="comecando">Começando<a class="headerlink" href="#comecando" title="Permanent link">&para;</a></h2>
 <p>Para seguir esse tutorial é necessário:</p>
 <ul>
-<li><strong>Hardware:</strong> DE10-Standard e acessórios</li>
-<li><strong>Softwares:</strong> Quartus 18.01</li>
-<li><strong>Documentos:</strong> <a href="https://github.com/Insper/DE10-Standard-v.1.3.0-SystemCD/tree/master/Manual">DE10-Standard_User_manual.pdf</a></li>
+<li><strong>Hardware:</strong> <ul>
+<li>DE10-Standard</li>
+<li>NUC ou máquina para server Linux</li>
+<li>Roteador (<em>modelo usado:</em> tp-link TL-R470T+)</li>
+<li>Switch (<em>modelo usado:</em> D-Link DGS-1100-08P)</li>
 </ul>
-<h2 id="motivacao">Motivação<a class="headerlink" href="#motivacao" title="Permanent link">&para;</a></h2>
-<p>Expliquem porque quiseram fazer esse tutorial.</p>
-<hr />
+</li>
+<li><strong>Softwares:</strong> Quartus 18.01</li>
+<li><strong>Documentos:</strong> <a href="https://github.com/Insper/DE10-Standard-v.1.3.0-SystemCD/tree/master/Manual">DE10-Standard_User_manual.pdf</a>, <a href="https://ece453.engr.wisc.edu/u-boot-script/">U-Boot Script</a>, <a href="https://www.rocketboards.org/foswiki/Documentation/BootingAlteraSoCFPGAFromNetworkUsingTFTPAndNFS">U-Boot TFTP e NFS</a></li>
+<li><strong>Laboratórios:</strong> <code>Linux embarcado</code>, <code>Configurando infra</code>, <code>Extra: configurando rede</code>, <code>Compilando o kernel</code> e <code>Buildroot</code>.</li>
+</ul>
+<h3 id="montando-a-infraestrutura">Montando a Infraestrutura<a class="headerlink" href="#montando-a-infraestrutura" title="Permanent link">&para;</a></h3>
+<p>Para montar a infraestrutura para este roteiro vamos precisar de um ponto de acesso à rede via cabo. Além disso, como a rede do insper é protegida, o roteador que estará constituindo nosso kit precisa estar com o MAC Adress configurado na rede interna.</p>
+<p>Com essas condições podemos, então, ligar toda a fiação:</p>
+<ul>
+<li>
+<p><code>Roteador</code> - Porta WAN1 deve estar conectada ao ponto de acesso, a porta LAN1 ao Switch e alimentá-lo com energia</p>
+</li>
+<li>
+<p><code>Switch</code> - Mínimo de 4 portas, deve alimentá-lo com energia</p>
+</li>
+<li>
+<p><code>NUC</code> - Conectar o cabo LAN ao Switch, ligar com Cabo USB a NUC à DE10-Standard e alimentá-la com energia</p>
+</li>
+<li>
+<p><code>DE10-Standard</code> - Conectar via cabo LAN ao Switch, conectar o USB da NUC, inserir o SDCard configurado com linux kernel e buildroot como filesystem (laboratórios previamente feitos) e alimentá-la com energia</p>
+</li>
+</ul>
+<p>Após tudo conectado, com um palito ou objeto fino, clicar nos pontos de RESET tanto do Roteador, quanto do Switch. O resultado deve ficar similar ao esquema abaixo:</p>
+<p><img alt="" src="imagem-infra.png" width="250" /></p>
+<h3 id="configurando-a-infraestrtura">Configurando a Infraestrtura<a class="headerlink" href="#configurando-a-infraestrtura" title="Permanent link">&para;</a></h3>
+<p>Com a infra montada, podemos começar a configurar todos os serviços. Vamos começar pela infraestrutura de Rede</p>
+<h4 id="configurando-a-rede">Configurando a Rede<a class="headerlink" href="#configurando-a-rede" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>Conecte seu computador ao switch e configure sua rede para aquela estabelecida no manual do fabricante do Roteador (no caso deste modelo, a rede é 192.168.0.0/24)</p>
+</li>
+<li>
+<p>Entre na dashboard do roteador em 192.168.0.1 e, acessando pelas credenciais padrões indicadas no manual, configure a mácara de rede (<em>Netmask</em>) para <code>255.255.240.0</code> ou <code>/20</code></p>
+</li>
+<li>
+<p>Reconfigure seu computador agora para a rede padrão do Switch (no caso deste modelo é 10.0.0.0/8)</p>
+</li>
+<li>
+<p>Acesse o Dashboard (10.90.90.90) com as credenciais <em>default</em> e reconfigure o Switch com o <strong>IP:</strong> 192.168.0.2/20</p>
+</li>
+</ul>
+<h4 id="configurando-a-maquina">Configurando a Máquina<a class="headerlink" href="#configurando-a-maquina" title="Permanent link">&para;</a></h4>
+<p>Depois de configurar tudo de rede, podemos configurar a NUC:</p>
+<ul>
+<li>
+<p>Conecte um monitor e um teclado à NUC para realizar a instalação do S.O.</p>
+</li>
+<li>
+<p>Instale o Ubuntu Server 20.04 LTS e durante as configurações preencher com as informações abaixo:</p>
+<ul>
+<li>hostname: nucsoc</li>
+<li>login: nucsoc</li>
+<li>senha: socfpga</li>
+<li>IP Fixo: 192.168.0.3/20</li>
+</ul>
+</li>
+<li>
+<p>Verifique se ele consegue <em>pingar</em> <code>8.8.8.8</code>. Se não conseguir, descubra como rotear os pacotes corretamente.</p>
+</li>
+<li>
+<p>Verifique se ele consegue <em>pingar</em> <code>www.google.com</code>. Se não conseguir, descubra como resolver as urls corretamente.</p>
+</li>
+<li>
+<p>Verifique se consegue conectar a ela via <strong>ssh</strong> do seu computador:
+<div class="highlight"><pre><span></span><code>ssh nucsoc@192.168.0.3
+</code></pre></div></p>
+</li>
+<li>
+<p>Atualize o <strong>apt</strong>:
+<div class="highlight"><pre><span></span><code>sudo apt update &amp;&amp; sudo apt upgrade -y
+</code></pre></div></p>
+</li>
+</ul>
+<details class="tip">
+<summary>Tip</summary>
+<p>Configure a <strong>NAT</strong> no roteador para poder acessar remotamente a NUC dentro da rede do Insper.
+Para isso, configure no roteador:</p>
+<ul>
+<li>Porta externa: 22</li>
+<li>Porta interna: 22</li>
+<li>IP interno: 192.168.0.3</li>
+</ul>
+</details>
+<h4 id="configurando-a-placa-fpga">Configurando a Placa FPGA<a class="headerlink" href="#configurando-a-placa-fpga" title="Permanent link">&para;</a></h4>
+<p>Seguindo os tutoriais dos roteiros da matéria, configure o SDCard com todas as partições necessárias, são elas: <strong>U-Boot</strong> (configurado com a instalação do linux embarcado), <strong>S.O.</strong> e <strong>Filesystem</strong> (buildroot deve estar instalado com todas as dependências de python declaradas mais à frente).</p>
+<p>Com tudo configurado, acesse o terminal da NUC via ssh e com o comando de <code>screen</code> acesse a Placa conectada a ela.
+<div class="highlight"><pre><span></span><code>sudo screen /dev/ttyUSB0 115200,cs8
+</code></pre></div></p>
+<p>Se você configurou NAT, é capaz de acessar a screen da FPGA à distância!</p>
+<p>Com esse acesso, agora podemos configurar o ip fixo do S.O. da FPGA:</p>
+<ul>
+<li>
+<p>Acesse a pasta <code>/etc/init.d/</code></p>
+</li>
+<li>
+<p>Crie um arquivo chamado <code>S60MAC.sh</code></p>
+</li>
+</ul>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>Essas duas partes são obrigatórias no tutorial:</p>
-<ul>
-<li>Nome de vocês</li>
-<li>Começando</li>
-<li>Motivação</li>
-</ul>
+<p>Todo o arquivo dentro desta pasta que começa com <strong>S</strong> maiúsculo é executado durante o <em>boot</em> do S.O.</p>
 </div>
-<h2 id="recursos-markdown">Recursos Markdown<a class="headerlink" href="#recursos-markdown" title="Permanent link">&para;</a></h2>
-<p>Vocês podem usar tudo que já sabem de markdown mais alguns recursos:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Bloco de destaque de texto, pode ser:</p>
 <ul>
-<li>note, example, warning, info, tip, danger</li>
+<li>Acessando o arquivo com <code>vi</code>, coloque o seguinte código:</li>
 </ul>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Faça assim</p>
-<p>É possível editar o título desses blocos</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="k">case</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="k">in</span>
+start<span class="o">)</span>
+    <span class="nb">printf</span> <span class="s2">&quot;Setting ip: &quot;</span>
+    /sbin/ifconfig eth0 <span class="m">192</span>.168.0.40 netmask <span class="m">255</span>.255.240.0 up
+    <span class="o">[</span> <span class="nv">$?</span> <span class="o">=</span> <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&quot;OK&quot;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;FAIL&quot;</span>
+    route add default gw <span class="m">192</span>.168.0.1
+    <span class="p">;;</span>
+*<span class="o">)</span>  
+    <span class="nb">exit</span> <span class="m">1</span>
+    <span class="p">;;</span>
+<span class="k">esac</span>
+</code></pre></div>
+<p>O código acima irá configurar a rede da placa para que esta tenha um ip fixo de acordo com as configurações de rede feitas.</p>
+<ul>
+<li>Transforme o arquivo acima em um executável
+<div class="highlight"><pre><span></span><code>chmod +x S60MAC.sh
+</code></pre></div></li>
+<li>Reinicie a FPGA para aplicar as mudanças</li>
+</ul>
+<p><strong>Pronto!</strong> Agora temos toda a inffraestrutura configurada e podemos começar a construir nosso servidor de TFTP.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Isso também é possível de ser feito, mas
-use com parcimonia.</p>
+<p>Não continue para os próximos passos sem toda a infraestrutura montada e configurada</p>
 </div>
-</div>
-<details class="info"><summary>Info</summary><p>Também da para esconder o texto, usar para coisas
-muito grandes, ou exemplos de códigos.</p>
-<div class="highlight"><pre><span></span><code>...
-
-
-
-
-
-
-
-
-
-
-
-oi!
+<hr />
+<h2 id="servidor-tftp">Servidor TFTP<a class="headerlink" href="#servidor-tftp" title="Permanent link">&para;</a></h2>
+<p>Antes de começar a construção do servidor, é bom entender como ele funciona.</p>
+<h3 id="conceito-e-diretorio">Conceito e Diretório<a class="headerlink" href="#conceito-e-diretorio" title="Permanent link">&para;</a></h3>
+<p>Um servidor TFTP é um serviço disponível em um host que permite ao server buscar arquivos, baseado no protocolo de comunicação TFTP. Para esta aplicação, o servidor será utilizado como fonte dos arquivos principais para configurar a FPGA da DE10-Standard, mas poderia também ser usado para buscar as imagens dos Sistemas Operacionais e BootScripts, além de parear muito bem com o serviço de NFS (Network File System) para que o File System da DE10 pudesse ser remoto. Com tais funcionalidades, poderíamos chegar em uma construção de diretório assim:</p>
+<div class="highlight"><pre><span></span><code>/srv
+├── nfs
+│   ├── angstrom-v2014.12
+│   │   └── root file system extracted from build tools .tar.gx archive
+│   ├── ubuntu-core
+│   │   └── root file system extracted from build tools .tar.gx archive
+└── tftp
+    ├── bootscripts
+    │   ├── sockit-angstrom.scr
+    │   ├── sockit-angstrom.script
+    │   ├── sockit-ubuntu.scr
+    │   └── sockit-ubuntu.script
+    ├── kernel
+    │   ├── kernel-3.10-ltsi
+    │   │   └── zImage
+    │   ├── kernel-4.4
+    │   │   └── zImage
+    ├── my-custom-board
+    │   ├── my-custom.dtb
+    │   └── my-custom.rbf    
+    └── sockit
+        ├── soc_system.dtb
+        └── soc_system.rbf
 </code></pre></div>
-
+<p>Como neste tutorial só será usado o espaço destinado aos arquivos do quartus, abaixo está uma tabela onde estes se encontram no output de uma compilação do projeto criado pelo aplicativo:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Source</th>
+<th>File Location</th>
+<th>Copy to server directory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compressed FPGA configuration file</td>
+<td>Quartus GHRD Build</td>
+<td>/sockit_ghrd/output_files/soc_system.rbf</td>
+<td>soc_system.rbf</td>
+</tr>
+<tr>
+<td>Device Tree Blob file</td>
+<td>Quartus GHRD Build</td>
+<td>/sockit_ghrd/soc_system.dtb</td>
+<td>soc_system.dtb</td>
+</tr>
+</tbody>
+</table>
+<h3 id="setup-do-servidor-tftp">Setup do Servidor TFTP<a class="headerlink" href="#setup-do-servidor-tftp" title="Permanent link">&para;</a></h3>
+<p>Para começar com o setup, vamos instalar o próprio serviço de TFTP:</p>
+<div class="highlight"><pre><span></span><code>sudo apt-get install tftpd-hpa
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>O servidor deve começar automáticamente após ser instalado, verifique por meio do seguinte comando:</p>
+<div class="highlight"><pre><span></span><code>sudo service tftpd-hpa status
+</code></pre></div>
+<p>Caso não tenha iniciado, inicie-o com o comando:</p>
+<div class="highlight"><pre><span></span><code>sudo service tftpd-hpa start
+</code></pre></div>
+</div>
+<p>Em seguida crie os repositórios necessários para armazenar os arquivos <code>.dtb</code> e <code>.rbf</code> como mostrado na árvore de diretórios acima.</p>
+<p>Depois de ter organizado todo o diretório, precisa indicar para o servidor que são estas pastas que serão usadas. Para isso deve editar a variável <code>TFTP_DIRECTORY</code>, localizada em <strong>/etc/default/tftpd-hpa</strong>. Ela deve possuir um diretório padrão, mas deve configurá-lo para aquele criado acima.</p>
+<div class="highlight"><pre><span></span><code><span class="nv">TFTP_DIRECTORY</span><span class="o">=</span><span class="s2">&quot;/srv/tftp/&quot;</span>
+</code></pre></div>
+<p>Verifique o status novamente. Se estiver rodadndo (<em>start/running</em>), pode proceguir para a próxima etapa, caso não, provavelmente o diretório configurado não foi encontrado pelo servidor.</p>
+<p>Por último, copie os arquivos <code>.dtb</code> e <code>.rbf</code> para o repositório e reinicie o servidor:</p>
+<div class="highlight"><pre><span></span><code>sudo service tftpd-hpa restart
+</code></pre></div>
+<h2 id="carregando-o-u-boot">Carregando o U-Boot<a class="headerlink" href="#carregando-o-u-boot" title="Permanent link">&para;</a></h2>
+<p>Depois de configurar toda a infraestrutura da DE10-Standard com os laboratórios feitos em aula, vamos entender uma ferramenta essencial para o funcionamento do Linux Embarcado: o <code>U-Boot</code>.</p>
+<p>Quando o kernel Linux é instalado, é criada uma partição no SDCard com esse serviço de <em>"pre-boot"</em>. Nele, são definidas as configurações iniciais da placa para receber e organizar tanto a imagem, os arquivos da FPGA e o File System e por meio de Scripts de boot, iniciar o S.O. adequadamente.</p>
+<p>Esse <em>"pre-boot"</em> é extremamente poderoso para a nossa aplicação, pois podemos configurar toda a estrutura do S.O. sem necessidade de tirar o SDCard ou acessá-la fisicamente.</p>
+<p>Antes de configurá-lo, é necessário entender seu funcionamento.</p>
+<h3 id="funcionamento-do-u-boot">Funcionamento do U-Boot<a class="headerlink" href="#funcionamento-do-u-boot" title="Permanent link">&para;</a></h3>
+<p>O U-Boot é muito simples. Ele funciona por meio de variáveis de ambiente, que podem ser funções ou caminhos, além de valores em si, que, quando construidos de um certo modo, conseguem construir a estrutura de boot necessária para ler os arquivos no servidor TFTP já configurado. Inclusive, já existem funções definidas para realizar o boot por meio de um servidor, só precisamos garantir que as variáveis estão corretamente definidas.</p>
+<p><strong>Vamos começar devagar...</strong></p>
+<p>Primeiro acesse o kernel com o u-boot. Como não existe nenhum Sistema Operacional, não temos acesso ao serviço de <strong>ssh</strong>, portanto precisamos acessar por <code>screen</code>, como foi feito anteriormente. </p>
+<p>Mas só isso não conseguimos entrar no painel do U-boot, precisamos reiniciar a placa, e no tempo antes de começar a inicialização automática apertar qualquer tecla. Isso deve parar o processo, e então você irá se deparar com esse terminal:</p>
+<div class="highlight"><pre><span></span><code>SOCFPGA_CYCLONE5 #
+</code></pre></div>
+<p>Nele é possível visualizar os comandos já definidos com a função de <code>help</code> ou visualizar quais as variáveis de ambiente já predefinidas, usando <code>printenv</code>.</p>
+<p>Outros comando muito importantes para configurar o ambiente são: <code>setenv</code> e <code>saveenv</code>, que irão, respectivamente, receber dois argumentos dizendo qual o nome da variável e seu valor e defini-la como variável de ambiente temporária e receber nenhum argumento e salvar todas as variáveis temporárias como permanetes naquela máquina.</p>
+<p>Com essas informações em mãos, vamos partir para a etapa de experimentação manual de boot.</p>
+<h4 id="experimentacao-manual">Experimentação Manual<a class="headerlink" href="#experimentacao-manual" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Em primeiro lugar, vamos configurar o servidor TFTP para que ele possa ser acessado pela placa. Para isso, precisamos definir o IP da placa e do servidor. Para isso, vamos usar o comando <code>setenv</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>setenv ipaddr 192.168.0.4
+</code></pre></div>
+<ul>
+<li>Agora configure o MAC-ADDRESS da placa na variável <code>ethaddr</code>;</li>
+</ul>
+<details class="dica">
+<summary>Dica</summary>
+<p>Para descobrir o MAC-ADDRESS da placa, basta acessar o terminal do Linux e executar o comando <code>ifconfig</code>. O MAC-ADDRESS deve ser o mesmo que aparece no terminal do Linux. </p>
+<p>Para isso basta reiniciar a placa por completo, sem acessar o <em>U-Boot</em>. Volte e execute o passo acima, ou, antes de reiniciar, execute o comando <code>saveenv</code>.</p>
 </details>
 <ul>
-<li><strong>Esse é um texto em destaque</strong></li>
-<li><mark>Pode fazer isso também</mark></li>
+<li>Teste a comunicação com a NUC, usando o comando <code>ping</code>:</li>
 </ul>
-<p>Usar emojis da lista:</p>
-<p><img alt="💕" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/1f495.svg" title=":two_hearts:" /> - <a href="https://github.com/caiyongji/emoji-list">https://github.com/caiyongji/emoji-list</a></p>
-<div class="highlight"><pre><span></span><code><span class="c1">// da para colocar códigos</span>
- <span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{}</span>
+<div class="highlight"><pre><span></span><code>ping 192.168.0.3
 </code></pre></div>
-
-<p>É legal usar abas para coisas desse tipo:</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">C</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello world!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">C++</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Hello world!&quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-</div>
-</div>
-<p>Inserir vídeo:</p>
 <ul>
-<li>Abra o youtube <img alt="➡️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/27a1.svg" title=":arrow_right:" /> clique com botão direito no vídeo <img alt="➡️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/svg/27a1.svg" title=":arrow_right:" /> copia código de incorporação:</li>
+<li>
+<p>Se a comunicação for bem sucedida, salve a variável <code>serverip</code> com o IP da NUC.</p>
+</li>
+<li>
+<p>Agora salve o ambiente criado com o comando <code>saveenv</code>.</p>
+</li>
+<li>
+<p>Reinicie a placa e acesse novamente o <em>U-Boot</em>. Com o comando <code>printenv</code> é possível visualizar <strong>todas as variáveis de ambiente criadas</strong>.</p>
+</li>
 </ul>
-<iframe width="630" height="450" src="https://www.youtube.com/embed/UIGsSLCoIhM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h3 id="boot-em-tftp-server">Boot em TFTP Server<a class="headerlink" href="#boot-em-tftp-server" title="Permanent link">&para;</a></h3>
+<p>Depois de entender o funcionamento do <em>U-Boot</em>, vamos crirar um <strong>BootScript</strong> para que a placa consiga iniciar o sistema carregando os arquivos do servidor TFTP sem a necessidade de nenhuma configuração manual.</p>
+<ul>
+<li>
+<p>Crie um arquivo <code>boot_script.script</code></p>
+</li>
+<li>
+<p>Adicione o seguinte conteúdo:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>echo -- Setting Network Variables --
+setenv ipaddr [SEU_IP]
+setenv ethaddr [SEU_MAC_ADDRESS]
 
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>Eu ajusto o tamanho do vídeo <code>width</code>/<code>height</code> para não ficar gigante na página</p>
-</div>
-<p>Imagens você insere como em plain markdown, mas tem a vantagem de poder mudar as dimensões com o marcador <code>{width=...}</code></p>
-<p><img alt="" src="icon-elementos.png" /></p>
-<p><img alt="" src="icon-elementos.png" width="200" /></p>
+echo -- Setting Server Ip --
+setenv serverip [SEU_IP_DA_NUC]
+
+echo -- Setting Server Location File --
+setenv tftp-sockit-dir sockit
+
+echo -- Setting Server SocKit File Names --
+setenv fpga-image soc_system.rbf
+setenv dtb-image soc_system.dtb
+
+echo -- Setting file location in RAM --
+setenv fpgadata 0x2000000
+setenv fpgadatasize 0x700000
+setenv dtbaddr 0x00000100
+
+echo -- Setting FPGA TFTP run scripts --
+setenv get-fpgadata &#39;tftp ${fpgadata} ${tftp-sockit-dir}/${fpga-image}&#39;
+setenv load-fpga &#39;fpga load 0 ${fpgadata} ${fpgadatasize}&#39;
+setenv get-dtb &#39;tftp ${dtbaddr} ${tftp-sockit-dir}/${dtb-image}&#39;
+
+
+echo -- Run tftp comands --
+run get-fpgadata;
+run load-fpga;
+run get-dtb;
+run bridge_enable_handoff;
+run mmcload;
+run mmcboot;
+</code></pre></div>
+<p>Depois do arquivo estar completo com as variáveis corretamente configuradas, vamos tornar o arquivo em um script que será executado no <em>U-Boot</em>.</p>
+<ul>
+<li>Inicie o <em>Intel Embedded Command Shell</em> com o seguinte comando:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>~/intelFPGA_lite/18.0/embedded/embedded_command_shell.sh
+</code></pre></div>
+<ul>
+<li>Execute o próximo comando para compilar o boot_script para o arquivo <code>u-boot.scr</code>:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n &quot;TFTP Boot Script&quot; -d boot_script.script u-boot.scr
+</code></pre></div>
+<ul>
+<li>
+<p>Copie o arquivo <code>u-boot.scr</code> para a mesma partição do SDCard da FPGA que se localiza a imagem do linux (<em>zImage</em>) - vai ser necessário desligar a placa e remover o cartão de memória.</p>
+</li>
+<li>
+<p>Insira o SDCard e inicie a placa.</p>
+</li>
+</ul>
+<p><strong>Pronto!</strong> Seu sistema deve estar funcionando. Agora, sempre que substituir os arquivos <code>.rbf</code>e <code>dtb</code> na NUC e reiniciar a placa, a FPGA será automáticamente reconfigurada com a nova aplicação no <em>boot</em>.</p>
+<h2 id="motivacao">Motivação<a class="headerlink" href="#motivacao" title="Permanent link">&para;</a></h2>
+<p>A nossa motivação para realizar este projeto foi como ele é altamente aplicável a replicação de serviços construídos para SoC-FPGA e no nosso caso, auxiliar a matéria de Embarcados com a possibilidade de automatização dos testes de funcionamento em hardware dos laboratórios.</p>
+<p>Além disso, entender sobre os serviços do <strong>GitHub</strong> para automatização de <em>hooks</em>, protocolos de transferência de arquivos como o <strong>TFTP</strong>, configuração e boot do DE10-Standard utilizando u-boot e programar no Quartus estavam entre temas de extremo interesse para todo o grupo.</p>
+
+
+
+
+
                 
-              
-              
-                
-
-
-              
-            </article>
-          </div>
+              </article>
+            </div>
+          
+          
         </div>
+        
       </main>
       
-        
-<footer class="md-footer">
+        <footer class="md-footer">
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-          <div class="md-footer-copyright__highlight">
-            Copyright &copy; 2019 / Prof. Rafael Corsi / rafael.corsi@insper.edu.br
-          </div>
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2019 / Prof. Rafael Corsi / rafael.corsi@insper.edu.br
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
       
     </div>
   </div>
 </footer>
       
     </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
     
-      <script src="assets/javascripts/vendor.77e55a48.min.js"></script>
-      <script src="assets/javascripts/bundle.aa3f9871.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
-      
-      <script>
-        app = initialize({
-          base: ".",
-          features: ['instant', 'navigation.expand', {'tabs': True}],
-          search: Object.assign({
-            worker: "assets/javascripts/worker/search.4ac00218.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
+    <script id="__config" type="application/json">{"base": ".", "features": ["instant", "navigation.expand", {"tabs": true}], "search": "assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.d6c3db9e.min.js"></script>
       
     
   </body>
