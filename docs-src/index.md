@@ -337,11 +337,11 @@ mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "TFTP Boot Script" -d boo
 
 
 ## FPGA
-Como os PIOs da Standard-DE10 estão conectados na FPGA e não na CPU, para que seja realizada a leitura dos pinos é necessário a habilitação da FPGA (servindo como uma interface fisica entre os pinos e a CPU), isso significa carregar um arquivo que irá descrever o hardware que ela deve formar. Esse arquivo é construído no software Quartus 
+Como os GPIOss da Standard-DE10 estão conectados na FPGA e não na CPU, para que seja realizada a leitura dos pinos é necessário a habilitação da FPGA (servindo como uma interface fisica entre os pinos e a CPU), isso significa carregar um arquivo que irá descrever o hardware que ela deve formar. Esse arquivo é construído no software Quartus 
 
 ### No quartus 18.1:
 Como base, foi utilizado o arquivo de demonstração da DE10_Standard localiado no repositótio: [DE10-Standard_GHRD](https://github.com/Insper/DE10-Standard-v.1.3.0-SystemCD/tree/master/Demonstration/SoC_FPGA/DE10_Standard_GHRD)
-Este arquivo já descreve o hardware da FPGA para o HPS acessar todos os seus periféricos, entretanto é necessario criar o acesso aos PIOs.
+Este arquivo já descreve o hardware da FPGA para o HPS acessar todos os seus periféricos, entretanto é necessario criar o acesso aos GPIOss.
 
 No quartus se deve abrir o arquivo DE10_Standard_GHRD.qpf, e em seguida:
 
@@ -356,7 +356,7 @@ No quartus se deve abrir o arquivo DE10_Standard_GHRD.qpf, e em seguida:
     <pre><code>cd output_files</code></pre>
     <pre><code>quartus_cpf -c DE10_Standard_FB.sof -o bitstream_compression=on soc_system.rbf</code></pre>
 
-- Gerar um novo arquivo .h, que conterá as alteracoes feitas no quartus, como os endereços de memória dos PIOs criados 
+- Gerar um novo arquivo .h, que conterá as alteracoes feitas no quartus, como os endereços de memória dos GPIOss criados 
 
 Em seguida basta fazer o upload do arquivo soc_system.rbf e socfpga.dtb no microSD e coloca-lo na DE10-Standard
 
@@ -366,8 +366,8 @@ Conteúdo do repositório referente aos arquivos de descrição de hardware:
 
 
 
-## Driver para a leitura dos PIOs
-Agora, com o HPS capaz de acessar os periféricos da FPGA e seus PIOs, é necessário um script para realizar a leitura dos pinos desejados.
+## Driver para a leitura dos GPIOss
+Agora, com o HPS capaz de acessar os periféricos da FPGA e seus GPIOss, é necessário um script para realizar a leitura dos pinos desejados.
 O script main.c lê o registrador dos pinos do bloco de inputs criado, coloca uma máscara para extrair apenas o valor do pino 0 (escolhido arbitrariamente para teste), e caso aconteça um toggle deste pino ele executa uma ação: nesse caso, cria um arquivo .txt por 4 sequndos com a menssagem "approved"
 
 Conteúdo do repositório referente aos arquivos do driver:
