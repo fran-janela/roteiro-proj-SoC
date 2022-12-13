@@ -365,6 +365,17 @@ Colocar o .rbf no microSD
 
 
 
+## Driver para a leitura dos PIOs
+quanto um driver para realizar a leitura dos registradores dos pinos.
+
+O script main.c lê o registrador dos pinos do bloco de inputs criado, coloca uma máscara para extrair apenas o valor do pino 0, e caso aconteça um toggle deste pino ele executa uma ação: cria um arquivo .txt por 4 sequndos com a menssagem "approved"
+
+- main.c: Codigo que roda na FPGA lendo os inputs recebidos 
+- hps_0.h: Biblioteca com o mapeamento dos endereços de memoria da FPGA
+- main.o: Obj file gerada a partir da main.c pela Makefile
+- HPS_FPGA_LED: Executável gerado a partir da main.c e hps_o.h pela Makefile
+- Makefile: Scrip para compilar a main.c e hps_0.h
+
 
 
 
