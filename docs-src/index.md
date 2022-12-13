@@ -1,9 +1,9 @@
 # Webserver com Servidor TFTP para automatização de deploy de testes de Embarcados na DE10-Standard
 
-- **Alunos:** Francisco Pinheiro Janela / Wilgner  / Marco
+- **Alunos:** Francisco Pinheiro Janela / Wilgner Lopes / Marco Tulio Masselli
 - **Curso:** Engenharia da Computação / Mecatrônica / Mecatrônica
 - **Semestre:** 6
-- **Contato:** francisco.pinheiro.janela@gmail.com / placeholder@gmail.com / placeholder@gmail.com
+- **Contato:** francisco.pinheiro.janela@gmail.com / placeholder@gmail.com / mtmasselli@gmail.com
 - **Ano:** 2022.2
 
 ## Começando
@@ -334,6 +334,39 @@ mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "TFTP Boot Script" -d boo
 - Insira o SDCard e inicie a placa.
 
 **Pronto!** Seu sistema deve estar funcionando. Agora, sempre que substituir os arquivos `.rbf`e `dtb` na NUC e reiniciar a placa, a FPGA será automáticamente reconfigurada com a nova aplicação no *boot*.
+
+
+## FPGA
+Como os PIOs da Standard-DE10 estão conectados na FPGA e não na CPU, para que seja realizada a leitura dos pinos é necessário a habilitação da FPGA (servindo como uma interface fisica entre os pinos e a CPU), isso significa carregar um arquivo que irá descrever o hardware que ela deve formar. Esse arquivo é construído no software Quartus 
+
+### No quartus 18.1:
+Como base, foi utilizado o arquivo de demonstração da DE10_Standard localiado no repositótio: [DE10-Standard_GHRD](https://github.com/Insper/DE10-Standard-v.1.3.0-SystemCD/tree/master/Demonstration/SoC_FPGA/DE10_Standard_GHRD)
+Este arquivo já descreve o hardware da FPGA para o HPS acessar todos os seus periféricos, entretanto é necessario criar o acesso aos PIOs.
+
+No quartus se deve abrir o arquivo DE10_Standard_GHRD.qpf, e em seguida:
+
+1. No canto superior direito da tela: Installed IP > System > soc_system. Isso abrirá uma nova aba com o IP Parameter Editor, uma interface gráfica que permite a visaulização do hardware dos periféricos como blocos conectados pelos barramentos.
+2. Criar um bloco de inputs/outputs
+3. Conectar os barramentos de clock, data, ….
+4. Retornar ao Qaurtus e adicionar no arquivo DE10_Standard_GHRD.qpf os pinos que serão utiliados no broco recém-criado no IP Parameter Editor
+5. Compilar e gerar o .sof (imagem da FPGA
+
+### No terminal
+- Gerar o .rbf (imagem compactada da FPGA para ser colocada no microSD)
+    <pre><code>cd output_files</code></pre>
+    <pre><code>quartus_cpf -c DE10_Standard_FB.sof -o bitstream_compression=on soc_system.rbf</code></pre>
+
+- Gerar um novo arquivo .h, que conterá as alteracoes feitas no quartus, como os endereços de memória dos PIOs criados 
+
+Colocar o .rbf no microSD
+
+- rootfs.tar: imagem do OS gerado pelo buildroot (posteriormente convertido para zImage no microSD)
+- Pasta dependencies: Conteúdo do microSD da FPGA (imagem do OS, imagem da FPGA, file system e u-boot) 
+
+
+
+
+
 
 ## Motivação
 
