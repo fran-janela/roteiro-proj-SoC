@@ -335,12 +335,6 @@ mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "TFTP Boot Script" -d boo
 
 **Pronto!** Seu sistema deve estar funcionando. Agora, sempre que substituir os arquivos `.rbf`e `dtb` na NUC e reiniciar a placa, a FPGA será automáticamente reconfigurada com a nova aplicação no *boot*.
 
-## Motivação
-
-A nossa motivação para realizar este projeto foi como ele é altamente aplicável a replicação de serviços construídos para SoC-FPGA e no nosso caso, auxiliar a matéria de Embarcados com a possibilidade de automatização dos testes de funcionamento em hardware dos laboratórios.
-
-Além disso, entender sobre os serviços do **GitHub** para automatização de *hooks*, protocolos de transferência de arquivos como o **TFTP**, configuração e boot do DE10-Standard utilizando u-boot e programar no Quartus estavam entre temas de extremo interesse para todo o grupo.
-
 ## Infraestrutura de integração
 
 O objetivo da construção da infraestrutura de integração é baixar os arquivos de embarcados de um repositorio no github, coletar os arquivos necessarios e salvar em uma pasta dentro da nuc.
@@ -364,7 +358,7 @@ pip install flask
 
 Crie uma pasta para o projeto e crie um arquivo app.py, dentro dele importe as seguintes bibliotecas:
 
-```cmd
+```python
 from flask import Flask, render_template, request
 from os import mkdir, path, chdir, system, listdir, getcwd
 from uuid import uuid4
@@ -381,7 +375,7 @@ O passo a passo desse projeto será:
 
 Para esse processo ocorrer é necessario criar uma rota dentro do flask. Alem disso todo o processo de criar pastas, entrar e sair de diretorios é utilizando a biblioteca OS do python, e a biblioteca shutil para realizar as copias do arquivo. Dentro do arquivo app.py, copie essa parte para criar a rota:
 
-```cmd
+```python
 
 app = Flask(__name__)
 
@@ -434,7 +428,7 @@ npx tailwindcss init
 
 Os comandos anteriores devem ter criado um arquivo `tailwind.config.js`, dentro dele copie a seguinte configuração:
 
-```cmd
+```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -450,7 +444,7 @@ module.exports = {
 
 Agora crie uma pasta chamada `static/src` e dentro dela o arquivo `input.css`. Copie a seguinte configuração para dentro desse arquivo:
 
-```cmd
+```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -458,7 +452,7 @@ Agora crie uma pasta chamada `static/src` e dentro dela o arquivo `input.css`. C
 
 Dentro do arquivo `index.html` criado anteriormente, coloque o seguinte codigo html:
 
-```cmd
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -506,3 +500,9 @@ flask run
 ```
 
 Com isso temos nosso serviço de integração pronto e funcionando. O serviço rodando agora podemos colocalo dentro da NUC e assim iniciar a integração com a FPGA
+
+## Motivação
+
+A nossa motivação para realizar este projeto foi como ele é altamente aplicável a replicação de serviços construídos para SoC-FPGA e no nosso caso, auxiliar a matéria de Embarcados com a possibilidade de automatização dos testes de funcionamento em hardware dos laboratórios.
+
+Além disso, entender sobre os serviços do **GitHub** para automatização de *hooks*, protocolos de transferência de arquivos como o **TFTP**, configuração e boot do DE10-Standard utilizando u-boot e programar no Quartus estavam entre temas de extremo interesse para todo o grupo.
