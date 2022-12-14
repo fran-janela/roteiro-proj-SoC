@@ -380,6 +380,171 @@ Conteúdo do repositório referente aos arquivos do driver em [projeto-SoC-FPGA]
 - Makefile: Scrip para compilar a main.c e hps_0.h
 
 
+## Infraestrutura de integração
+
+O objetivo da construção da infraestrutura de integração é baixar os arquivos de embarcados de um repositorio no github, coletar os arquivos necessarios e salvar em uma pasta dentro da nuc.
+
+![](home-frontend.png){width=500}
+
+### Primeiros passos
+
+Para começarmos, vamos primeiro criar um ambiente virtual com o python:
+
+```cmd
+virtualenv proj-env
+
+source proj-env/bin/activate 
+```
+
+Nesse projeto utilizaremos flask, por isso precisamos instalar-lo:
+```cmd
+pip install flask
+```
+
+Crie uma pasta para o projeto e crie um arquivo app.py, dentro dele importe as seguintes bibliotecas:
+
+```python
+from flask import Flask, render_template, request
+from os import mkdir, path, chdir, system, listdir, getcwd
+from uuid import uuid4
+import shutil
+```
+
+O passo a passo desse projeto será:
+
+- Primeiro o usuario coloca a url do repositorio no formulario e clica no botao enviar
+- Apos o click, o back-end em python realiza as seguintes operações:
+    - Cria uma pasta repo-download e uma pasta com o nome do usuario
+    - Clona o repositorio dentro dessa pasta
+    - Dentro da pasta busca o arquivo que termina com a extensão .hex e copia para a pasta file-to-test
+
+Para esse processo ocorrer é necessario criar uma rota dentro do flask. Alem disso todo o processo de criar pastas, entrar e sair de diretorios é utilizando a biblioteca OS do python, e a biblioteca shutil para realizar as copias do arquivo. Dentro do arquivo app.py, copie essa parte para criar a rota:
+
+```python
+
+app = Flask(__name__)
+
+@app.route("/", methods=["GET", "POST"])
+@app.route("/index", methods=["GET", "POST"])
+def index():
+    path_atual = getcwd()
+    if request.method == "POST":
+        url_repo = request.form.get("url")
+        username = url_repo.split("/")[3]
+        folder_name = f"{uuid4()}-{username}"
+        
+        if path.exists("./repos-downloaded/"):
+            mkdir(path = f"./repos-downloaded/{folder_name}")
+        else:
+            mkdir(path="./repos-downloaded/")
+            mkdir(path = f"./repos-downloaded/{folder_name}")
+        
+        chdir(f"./repos-downloaded/{folder_name}")
+        system("echo 'Dentro da pasta'")
+        system(f"git clone {url_repo}")
+    
+        for file in listdir("./"):
+            chdir(file)
+            for file2 in listdir("./"):
+                if file2.endswith(".hex"):
+                    if path.exists("../../../file-to-test/"):
+                        shutil.copy(f"./{file2}", f"../../../file-to-test/{folder_name}.hex")
+                    else:
+                        mkdir(path="../../../file-to-test")
+                        shutil.copy(f"./{file2}", f"../../../file-to-test/{folder_name}.hex")
+
+        chdir(path_atual)
+    return render_template("index.html")
+
+
+if __name__ == '__main__':
+	app.run(host="192.168.0.3", port=8080) 
+```
+
+Com a rota criada vamos criar o front-end da aplicação, na raiz do projeto crie uma pasta chamada **templates** e dentro dela crie um arquivo `index.html`. Alem disso rode o seguinte comando no terminal para instalar e iniciar o tailwindcss:
+
+!!! warning
+    Para essa parte é necessario ter o Node instalado no computador
+
+```cmd
+npm install -D tailwindcss
+npx tailwindcss init
+```
+
+Os comandos anteriores devem ter criado um arquivo `tailwind.config.js`, dentro dele copie a seguinte configuração:
+
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./templates/**/*.html",
+    "./static/src/**/*.js"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+Agora crie uma pasta chamada `static/src` e dentro dela o arquivo `input.css`. Copie a seguinte configuração para dentro desse arquivo:
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
+
+Dentro do arquivo `index.html` criado anteriormente, coloque o seguinte codigo html:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste CI</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+</head>
+<body class="bg-slate-100">
+    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md space-y-8">
+          <div>
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Teste de CI - Computação Embarcada</h2>      
+          </div>
+          <form class="mt-8 space-y-6" action="/index" method="POST">
+            <input type="hidden" name="remember" value="true">
+            <div class="-space-y-px rounded-md shadow-sm">
+              <div>
+                <label for="url-github" class="sr-only">URL do Repositorio</label>
+                <input id="url-github" name="url" type="text" autocomplete="text" required class="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm" placeholder="URL do Repositorio no Github">
+              </div>
+              
+            </div>
+      
+            <div>
+              <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                Enviar
+              </button>
+            </div>
+
+          </form>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+
+Agora para rodar o back-end em flask rode os seguintes comandos
+
+```cmd
+npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css
+flask run
+```
+
+Com isso temos nosso serviço de integração pronto e funcionando. O serviço rodando agora podemos colocalo dentro da NUC e assim iniciar a integração com a FPGA
 
 
 ## Motivação
