@@ -349,7 +349,7 @@ No quartus se deve abrir o arquivo DE10_Standard_GHRD.qpf, e em seguida:
 2. Criar um bloco de inputs/outputs
 3. Conectar os barramentos de clock, data, ….
 4. Retornar ao Qaurtus e adicionar no arquivo DE10_Standard_GHRD.qpf os pinos que serão utiliados no broco recém-criado no IP Parameter Editor
-5. Compilar e gerar o .sof (imagem da FPGA
+5. Compilar e gerar o .sof (imagem da FPGA)
 
 ### No terminal
 - Gerar o .rbf (imagem compactada da FPGA para ser colocada no microSD)
@@ -373,8 +373,8 @@ O script main.c lê o registrador dos pinos do bloco de inputs criado, coloca um
 
 Conteúdo do repositório referente aos arquivos do driver em [projeto-SoC-FPGA](https://github.com/marcotuliomrt/projeto-SoC-FPGA/tree/main):
 
-- main.c: Codigo que roda na FPGA lendo os inputs recebidos 
-- hps_0.h: Biblioteca com o mapeamento dos endereços de memoria da FPGA
+- main.c: Código que roda na FPGA lendo os inputs recebidos 
+- hps_0.h: Biblioteca com o mapeamento dos endereços de memória da FPGA
 - main.o: Obj file gerada a partir da main.c pela Makefile
 - HPS_FPGA_LED: Executável gerado a partir da main.c e hps_o.h pela Makefile
 - Makefile: Scrip para compilar a main.c e hps_0.h
