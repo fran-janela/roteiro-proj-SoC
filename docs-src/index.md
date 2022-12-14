@@ -360,7 +360,8 @@ No quartus se deve abrir o arquivo DE10_Standard_GHRD.qpf, e em seguida:
 
 Em seguida basta fazer o upload do arquivo soc_system.rbf e socfpga.dtb no microSD e coloca-lo na DE10-Standard
 
-Conteúdo do repositório referente aos arquivos de descrição de hardware:
+Conteúdo do repositório referente aos arquivos de descrição de hardware em [projeto-SoC-FPGA](https://github.com/marcotuliomrt/projeto-SoC-FPGA/tree/main):
+
 - rootfs.tar: imagem do OS gerado pelo buildroot (posteriormente convertido para zImage no microSD)
 - Pasta dependencies: Conteúdo do microSD da FPGA (imagem do OS, imagem da FPGA, file system e u-boot) 
 
@@ -370,7 +371,8 @@ Conteúdo do repositório referente aos arquivos de descrição de hardware:
 Agora, com o HPS capaz de acessar os periféricos da FPGA e seus GPIOs, é necessário um script para realizar a leitura dos pinos desejados.
 O script main.c lê o registrador dos pinos do bloco de inputs criado, coloca uma máscara para extrair apenas o valor do pino 0 (escolhido arbitrariamente para teste), e caso aconteça um toggle deste pino ele executa uma ação: nesse caso, cria um arquivo .txt por 4 sequndos com a menssagem "approved"
 
-Conteúdo do repositório referente aos arquivos do driver:
+Conteúdo do repositório referente aos arquivos do driver em [projeto-SoC-FPGA](https://github.com/marcotuliomrt/projeto-SoC-FPGA/tree/main):
+
 - main.c: Codigo que roda na FPGA lendo os inputs recebidos 
 - hps_0.h: Biblioteca com o mapeamento dos endereços de memoria da FPGA
 - main.o: Obj file gerada a partir da main.c pela Makefile
